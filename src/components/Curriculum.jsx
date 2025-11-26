@@ -31,55 +31,72 @@ const Curriculum = () => {
     ];
 
     return (
-        <section className="section" id="curriculum">
+        <section className="section section-bg-light">
             <div className="container">
                 <div className="section-title">
-                    <h2>Comprehensive <span style={{ color: 'var(--color-primary)' }}>Curriculum</span></h2>
-                    <p>A structured 10-week roadmap to mastery.</p>
+                    <h2>Comprehensive Curriculum</h2>
+                    <p>A structured 10-week roadmap to mastery</p>
                 </div>
 
-                <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+                <div style={{ display: 'grid', gap: '24px', maxWidth: '1000px', margin: '0 auto' }}>
                     {weeks.map((item, index) => (
                         <div key={index} style={{
-                            marginBottom: '20px',
                             backgroundColor: 'white',
-                            borderRadius: 'var(--radius-md)',
-                            boxShadow: 'var(--shadow-sm)',
+                            borderRadius: 'var(--radius-lg)',
                             overflow: 'hidden',
-                            border: '1px solid #eee'
-                        }}>
+                            border: '1px solid #e5e7eb',
+                            boxShadow: 'var(--shadow-sm)',
+                            transition: 'box-shadow 0.2s'
+                        }}
+                            onMouseEnter={(e) => e.currentTarget.style.boxShadow = 'var(--shadow-md)'}
+                            onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'var(--shadow-sm)'}
+                        >
+                            {/* Header */}
                             <div style={{
                                 padding: '24px',
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                                alignItems: 'center',
-                                backgroundColor: 'var(--color-bg-light)',
-                                borderBottom: '1px solid #eee'
+                                backgroundColor: '#f9fafb',
+                                borderBottom: '1px solid #e5e7eb'
                             }}>
-                                <div>
-                                    <span style={{
-                                        fontSize: '0.85rem',
-                                        fontWeight: '700',
-                                        color: 'var(--color-primary)',
-                                        textTransform: 'uppercase',
-                                        letterSpacing: '1px'
-                                    }}>{item.week}</span>
-                                    <h3 style={{ fontSize: '1.2rem', marginTop: '4px', color: 'var(--color-secondary)' }}>{item.title}</h3>
+                                <div style={{
+                                    color: 'var(--color-primary)',
+                                    fontSize: '0.85rem',
+                                    fontWeight: '700',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '1px',
+                                    marginBottom: '8px'
+                                }}>
+                                    {item.week}
                                 </div>
+                                <h3 style={{
+                                    fontSize: '1.5rem',
+                                    color: 'var(--color-text-main)',
+                                    fontWeight: '700',
+                                    margin: 0
+                                }}>
+                                    {item.title}
+                                </h3>
                             </div>
+
+                            {/* Topics Grid */}
                             <div style={{ padding: '24px' }}>
-                                <ul style={{
+                                <div style={{
                                     display: 'grid',
                                     gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                                    gap: '12px'
+                                    gap: '16px'
                                 }}>
-                                    {item.topics.map((topic, i) => (
-                                        <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.95rem', color: 'var(--color-text-muted)' }}>
-                                            <ChevronRight size={16} color="var(--color-primary)" />
-                                            {topic}
-                                        </li>
+                                    {item.topics.map((topic, idx) => (
+                                        <div key={idx} style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '8px',
+                                            color: 'var(--color-text-muted)',
+                                            fontSize: '0.95rem'
+                                        }}>
+                                            <ChevronRight size={16} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
+                                            <span>{topic}</span>
+                                        </div>
                                     ))}
-                                </ul>
+                                </div>
                             </div>
                         </div>
                     ))}

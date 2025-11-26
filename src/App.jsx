@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Stats from './components/Stats';
 import About from './components/About';
 import Highlights from './components/Highlights';
+import Eligibility from './components/Eligibility';
 import Curriculum from './components/Curriculum';
 import TechStack from './components/TechStack';
 import Testimonials from './components/Testimonials';
@@ -18,6 +19,7 @@ function App() {
       <Stats />
       <About />
       <Highlights />
+      <Eligibility />
       <Curriculum />
       <TechStack />
       <Testimonials />
