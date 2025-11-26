@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://arunprakashd.github.io/terv-landing-page",
+  "homepage": "https://arunprakash-nura.github.io/terv-landing-page",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
