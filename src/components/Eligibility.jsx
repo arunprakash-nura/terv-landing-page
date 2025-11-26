@@ -11,12 +11,12 @@ const Eligibility = () => {
         {
             icon: Briefcase,
             title: 'Working Professionals',
-            description: 'Suitable for IT and non-IT professionals aiming to upskill or switch to AI ML roles.'
+            description: 'Suitable for IT professionals aiming to upskill or switch to Software developer roles.'
         },
         {
             icon: TrendingUp,
             title: 'Career Switchers',
-            description: 'Perfect for those looking to move into high-demand roles in Artificial Intelligence, Machine Learning, or Data Science.'
+            description: 'Perfect for those looking to move into high-demand roles in Software development'
         }
     ];
 
