@@ -31,7 +31,7 @@ const Header = () => {
         >
             <div className="container" style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <div style={{ fontSize: '1.5rem', fontWeight: '800', letterSpacing: '-0.5px', display: 'flex', alignItems: 'center' }}>
-                    <img src="/logo.png" alt="TERV Pro" style={{ height: '40px', width: 'auto' }} />
+                    <img src={`${import.meta.env.BASE_URL}logo.png`} alt="TERV Pro" style={{ height: '40px', width: 'auto' }} />
                 </div>
 
                 {/* Desktop Nav */}

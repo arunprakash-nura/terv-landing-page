@@ -153,7 +153,7 @@ const Footer = () => {
                         </div>
 
                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                            <img src="/logo.png" alt="TERV Pro" style={{ height: '32px', width: 'auto' }} />
+                            <img src={`${import.meta.env.BASE_URL}logo.png`} alt="TERV Pro" style={{ height: '32px', width: 'auto' }} />
                             <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.85rem' }}>Made with ❤️ in 🇮🇳</span>
                         </div>
                     </div>
