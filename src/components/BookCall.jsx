@@ -11,7 +11,7 @@ const BookCall = () => {
     ];
 
     return (
-        <section className="section" style={{
+        <section id="book-call" className="section" style={{
             background: 'linear-gradient(135deg, #201140 0%, #4c1d95 100%)',
             color: 'white',
             padding: '80px 0'

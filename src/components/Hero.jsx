@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 
-const Hero = () => {
+const Hero = ({ onApplyClick, onDownloadClick }) => {
     return (
         <section style={{
             backgroundColor: 'var(--color-secondary)',
@@ -34,7 +34,7 @@ const Hero = () => {
                             fontSize: '0.9rem'
                         }}>
                             <span style={{ width: '8px', height: '8px', backgroundColor: '#00ff88', borderRadius: '50%' }}></span>
-                            Next Cohort Starting Soon
+                            Next Cohort Starting From 17th December
                         </div>
 
                         <h1 style={{
@@ -53,18 +53,21 @@ const Hero = () => {
                             maxWidth: '540px'
                         }}>
                             Master the Full Stack, build real-world projects, and get hired by top companies.
-                            100% Placement Support.
+                            100% Placement Guarantee.
                         </p>
 
                         <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-                            <button className="btn btn-primary" style={{ padding: '16px 32px', fontSize: '1.1rem' }}>
+                            <button className="btn btn-primary" style={{ padding: '16px 32px', fontSize: '1.1rem' }} onClick={onApplyClick}>
                                 Apply Now <ArrowRight size={20} style={{ marginLeft: '8px' }} />
                             </button>
                             <button className="btn" style={{
                                 backgroundColor: 'rgba(255,255,255,0.1)',
                                 color: 'white',
-                                backdropFilter: 'blur(10px)'
-                            }}>
+                                backdropFilter: 'blur(10px)',
+                                border: '2px solid rgba(255,255,255,0.3)'
+                            }}
+                                onClick={onDownloadClick}
+                            >
                                 Download Syllabus
                             </button>
                         </div>

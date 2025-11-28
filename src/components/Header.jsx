@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
-const Header = () => {
+const Header = ({ onApplyClick }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -39,7 +39,7 @@ const Header = () => {
                     <a href="#program" style={{ fontWeight: 500 }}>Program</a>
                     <a href="#curriculum" style={{ fontWeight: 500 }}>Curriculum</a>
                     <a href="#reviews" style={{ fontWeight: 500 }}>Reviews</a>
-                    <button className="btn btn-primary">Apply Now</button>
+                    <button className="btn btn-primary" onClick={onApplyClick}>Apply Now</button>
                 </nav>
 
                 {/* Mobile Menu Toggle */}
@@ -76,7 +76,7 @@ const Header = () => {
                     <a href="#program" onClick={() => setIsMobileMenuOpen(false)}>Program</a>
                     <a href="#curriculum" onClick={() => setIsMobileMenuOpen(false)}>Curriculum</a>
                     <a href="#reviews" onClick={() => setIsMobileMenuOpen(false)}>Reviews</a>
-                    <button className="btn btn-primary" style={{ width: '100%' }}>Apply Now</button>
+                    <button className="btn btn-primary" style={{ width: '100%' }} onClick={onApplyClick}>Apply Now</button>
                 </div>
             )}
 

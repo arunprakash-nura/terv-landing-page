@@ -10,8 +10,8 @@ const Highlights = () => {
         },
         {
             icon: <Briefcase size={32} />,
-            title: '100% Placement Support',
-            desc: 'Dedicated placement team to help you with resume, mock interviews, and job referrals.'
+            title: '100% Placement Guarantee',
+            desc: 'Dedicated placement cell, resume building, mock interviews, and job referrals to top companies.'
         },
         {
             icon: <Code size={32} />,

@@ -26,7 +26,7 @@ const About = () => {
                     {/* Text Side */}
                     <div>
                         <h2 style={{ fontSize: '2.5rem', marginBottom: '24px', color: 'var(--color-secondary)' }}>
-                            Bridging the Gap Between <span style={{ color: 'var(--color-primary)' }}>Education and Industry</span>
+                            Learn like you would At <span style={{ color: 'var(--color-primary)' }}>India's Top Tech Companies</span>
                         </h2>
                         <p style={{ fontSize: '1.1rem', color: 'var(--color-text-muted)', marginBottom: '20px' }}>
                             Terv Pro is an intensive, career-focused training program designed to transform ambitious individuals into job-ready full-stack developers.

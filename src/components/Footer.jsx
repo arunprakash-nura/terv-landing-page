@@ -1,7 +1,7 @@
 import React from 'react';
 import { Instagram, Facebook, Linkedin, Youtube, CheckCircle } from 'lucide-react';
 
-const Footer = () => {
+const Footer = ({ onApplyClick }) => {
     return (
         <footer style={{ backgroundColor: 'var(--color-secondary)', color: 'white', paddingTop: '80px', paddingBottom: '40px' }}>
             <div className="container">
@@ -16,7 +16,7 @@ const Footer = () => {
                     <p style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.7)', marginBottom: '32px', maxWidth: '600px' }}>
                         Join 500+ successful graduates. Transform your career in 10 weeks.
                     </p>
-                    <button className="btn btn-primary" style={{ padding: '16px 40px', fontSize: '1.2rem' }}>
+                    <button className="btn btn-primary" style={{ padding: '16px 40px', fontSize: '1.2rem' }} onClick={onApplyClick}>
                         Apply Now
                     </button>
                 </div>

@@ -1,32 +1,7 @@
-import React from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Stats from './components/Stats';
-import About from './components/About';
-import Highlights from './components/Highlights';
-import Eligibility from './components/Eligibility';
-import Curriculum from './components/Curriculum';
-import TechStack from './components/TechStack';
-import Testimonials from './components/Testimonials';
-import BookCall from './components/BookCall';
-import Footer from './components/Footer';
-
-function App() {
-  return (
-    <div className="app">
-      <Header />
-      <Hero />
-      <Stats />
-      <About />
-      <Highlights />
-      <Eligibility />
-      <Curriculum />
-      <TechStack />
-      <Testimonials />
-      <BookCall />
-      <Footer />
-    </div>
-  );
-}
-
-export default App;
+import React, { useState } from 'react'; import Header from './components/Header'; import Hero from './components/Hero'; import Stats from './components/Stats'; import About from './components/About'; import Highlights from './components/Highlights'; import Projects from './components/Projects'; import CareerBenefits from './components/CareerBenefits'; import Eligibility from './components/Eligibility'; import Curriculum from './components/Curriculum'; import CareerServices from './components/CareerServices'; import TechStack from './components/TechStack';
+import HiringPartners from './components/HiringPartners';
+import Testimonials from './components/Testimonials'; import BookCall from './components/BookCall'; import Footer from './components/Footer'; import ApplicationForm from './components/ApplicationForm'; import DownloadForm from './components/DownloadForm'; import Chatbot from './components/Chatbot'; function App() {
+  const [isFormOpen, setIsFormOpen] = useState(false); const [isDownloadFormOpen, setIsDownloadFormOpen] = useState(false); return (<div className="app">      <Header onApplyClick={() => setIsFormOpen(true)} />      <Hero onApplyClick={() => setIsFormOpen(true)} onDownloadClick={() => setIsDownloadFormOpen(true)} />      <Stats />      <About />      <Highlights />      <Projects />      <CareerBenefits />      <Eligibility />      <Curriculum />      <CareerServices />      <TechStack />
+    <HiringPartners />
+    <Testimonials />      <BookCall />      <Footer onApplyClick={() => setIsFormOpen(true)} />      <ApplicationForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />      <DownloadForm isOpen={isDownloadFormOpen} onClose={() => setIsDownloadFormOpen(false)} />      <Chatbot onApplyClick={() => setIsFormOpen(true)} onDownloadClick={() => setIsDownloadFormOpen(true)} />    </div>);
+} export default App;
