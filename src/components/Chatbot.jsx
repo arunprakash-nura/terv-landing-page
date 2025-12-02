@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MessageCircle, X, Send, Bot, User, ChevronDown } from 'lucide-react';
+import { EMAIL_CONFIG } from '../emailConfig';
 
 const Chatbot = ({ onApplyClick, onDownloadClick }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -8,6 +9,8 @@ const Chatbot = ({ onApplyClick, onDownloadClick }) => {
     const [isTyping, setIsTyping] = useState(false);
     const [showNotification, setShowNotification] = useState(true);
     const [showTooltip, setShowTooltip] = useState(false);
+    const [collectingInfo, setCollectingInfo] = useState(null); // 'name', 'phone', 'email', null
+    const [userInfo, setUserInfo] = useState({ name: '', phone: '', email: '' });
     const messagesEndRef = useRef(null);
 
     const scrollToBottom = () => {
@@ -188,15 +191,12 @@ const Chatbot = ({ onApplyClick, onDownloadClick }) => {
                 window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
             }, 1000);
         }
-        // Book a Call
-        else if (lowerInput.includes('call') || lowerInput === 'call' || lowerInput.includes('talk') || lowerInput.includes('speak')) {
+        // Book a Call / Talk to Counselor
+        else if (lowerInput.includes('call') || lowerInput === 'call' || lowerInput.includes('talk') || lowerInput.includes('speak') || lowerInput.includes('counselor')) {
+            setCollectingInfo('name');
             addBotMessage(
-                "📞 Perfect! Let me take you to our booking section where you can schedule a call with our career counselor.",
-                getFollowUpOptions()
+                "📞 Excellent! I'd be happy to connect you with our career counselor.\n\nLet me collect a few details to schedule your call.\n\nFirst, may I know your name?"
             );
-            setTimeout(() => {
-                document.querySelector('#book-call')?.scrollIntoView({ behavior: 'smooth' });
-            }, 1000);
         }
         // Main Menu
         else if (lowerInput.includes('menu') || lowerInput === 'menu' || lowerInput.includes('start') || lowerInput.includes('help')) {
@@ -235,8 +235,90 @@ const Chatbot = ({ onApplyClick, onDownloadClick }) => {
     const handleSendMessage = () => {
         if (inputValue.trim()) {
             addUserMessage(inputValue);
-            handleUserInput(inputValue);
+
+            // If we're collecting information, handle it
+            if (collectingInfo) {
+                handleInfoCollection(inputValue.trim());
+            } else {
+                handleUserInput(inputValue);
+            }
+
             setInputValue('');
+        }
+    };
+
+    const handleInfoCollection = (value) => {
+        if (collectingInfo === 'name') {
+            // Validate name - only letters and spaces, minimum 2 characters
+            const nameRegex = /^[a-zA-Z\s]{2,50}$/;
+            if (nameRegex.test(value)) {
+                setUserInfo(prev => ({ ...prev, name: value }));
+                setCollectingInfo('phone');
+                addBotMessage("Great! Now, please share your contact number:");
+            } else {
+                addBotMessage("Please enter a valid name using only letters (no numbers, symbols, or special characters). Your name should be at least 2 characters long.");
+            }
+        } else if (collectingInfo === 'phone') {
+            // Validate phone - exactly 10 digits, no spaces or special characters
+            const phoneRegex = /^[0-9]{10}$/;
+            const cleanedPhone = value.replace(/\s+/g, '');
+
+            if (phoneRegex.test(cleanedPhone)) {
+                setUserInfo(prev => ({ ...prev, phone: cleanedPhone }));
+                setCollectingInfo('email');
+                addBotMessage("Perfect! Lastly, please provide your email address:");
+            } else {
+                addBotMessage("Please enter a valid 10-digit mobile number (numbers only, no spaces or special characters). Example: 9876543210");
+            }
+        } else if (collectingInfo === 'email') {
+            // Validate email format
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            if (emailRegex.test(value)) {
+                setUserInfo(prev => ({ ...prev, email: value }));
+                setCollectingInfo(null);
+
+                // Submit the collected information
+                submitUserInfo({ ...userInfo, email: value });
+
+                addBotMessage(
+                    `✅ Thank you! I've received your details:\n\n📝 Name: ${userInfo.name}\n📞 Phone: ${userInfo.phone}\n📧 Email: ${value}\n\nOur counselor will contact you within 24 hours. Is there anything else I can help you with?`,
+                    getFollowUpOptions()
+                );
+
+                // Reset user info
+                setUserInfo({ name: '', phone: '', email: '' });
+            } else {
+                addBotMessage("Please enter a valid email address. Example: yourname@example.com");
+            }
+        }
+    };
+
+    const submitUserInfo = async (info) => {
+        try {
+            console.log('Submitting user info:', info);
+
+            // Prepare Google Sheets data
+            const sheetsData = {
+                formType: 'book_call',
+                name: info.name,
+                phone: info.phone,
+                email: info.email
+            };
+
+            // Send to Google Sheets
+            await fetch(EMAIL_CONFIG.GOOGLE_SHEETS_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(sheetsData)
+            });
+
+            console.log('Data sent to Google Sheets successfully');
+        } catch (error) {
+            console.error('Error submitting user info:', error);
         }
     };
 

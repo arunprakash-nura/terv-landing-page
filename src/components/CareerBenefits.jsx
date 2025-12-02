@@ -1,7 +1,7 @@
 import React from 'react';
 import { Code, Users, Briefcase, Award, Github, Target } from 'lucide-react';
 
-const CareerBenefits = () => {
+const CareerBenefits = ({ onBookCallClick }) => {
     const benefits = [
         {
             icon: <Code size={32} />,
@@ -143,12 +143,7 @@ const CareerBenefits = () => {
                 }}>
                     <button
                         className="btn"
-                        onClick={() => {
-                            const bookCallSection = document.querySelector('#book-call');
-                            if (bookCallSection) {
-                                bookCallSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                            }
-                        }}
+                        onClick={onBookCallClick}
                         style={{
                             backgroundColor: '#fbbf24',
                             color: '#1f2937',

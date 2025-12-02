@@ -209,17 +209,13 @@ const HiringPartners = () => {
                                                     width: 'auto',
                                                     maxWidth: '140px',
                                                     objectFit: 'contain',
-                                                    filter: 'grayscale(100%)', // Start grayscale
-                                                    opacity: 0.8,
-                                                    transition: 'all 0.3s ease'
+                                                    transition: 'transform 0.3s ease'
                                                 }}
                                                 onMouseEnter={(e) => {
-                                                    e.currentTarget.style.filter = 'grayscale(0%)';
-                                                    e.currentTarget.style.opacity = '1';
+                                                    e.currentTarget.style.transform = 'scale(1.05)';
                                                 }}
                                                 onMouseLeave={(e) => {
-                                                    e.currentTarget.style.filter = 'grayscale(100%)';
-                                                    e.currentTarget.style.opacity = '0.8';
+                                                    e.currentTarget.style.transform = 'scale(1)';
                                                 }}
                                                 onError={(e) => {
                                                     e.currentTarget.style.display = 'none';

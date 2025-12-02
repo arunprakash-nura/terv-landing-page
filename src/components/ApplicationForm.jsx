@@ -8,7 +8,6 @@ const ApplicationForm = ({ isOpen, onClose }) => {
         name: '',
         email: '',
         phone: '',
-        countryCode: '+91',
         education: '',
         currentProfile: ''
     });
@@ -126,7 +125,7 @@ const ApplicationForm = ({ isOpen, onClose }) => {
                 const templateParams = {
                     from_name: formData.name,
                     from_email: formData.email,
-                    phone: `${formData.countryCode} ${formData.phone}`,
+                    phone: formData.phone,
                     education: formData.education,
                     current_profile: formData.currentProfile,
                     to_email: 'your-email@example.com'
@@ -147,7 +146,7 @@ const ApplicationForm = ({ isOpen, onClose }) => {
                 formType: 'application',
                 name: formData.name,
                 email: formData.email,
-                phone: `${formData.countryCode} ${formData.phone}`,
+                phone: formData.phone,
                 education: formData.education,
                 currentProfile: formData.currentProfile
             };
@@ -169,22 +168,13 @@ const ApplicationForm = ({ isOpen, onClose }) => {
             console.log('Application form submitted:', formData);
 
             // Show success message
-            alert('Application submitted successfully! Your syllabus will download now. We will contact you soon.');
-
-            // Trigger syllabus download
-            const link = document.createElement('a');
-            link.href = `${import.meta.env.BASE_URL}syllabus.pdf`;
-            link.download = 'Terv-Full-Stack-Syllabus.pdf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            alert('Application submitted successfully! We will contact you soon.');
 
             // Reset form and close
             setFormData({
                 name: '',
                 email: '',
                 phone: '',
-                countryCode: '+91',
                 education: '',
                 currentProfile: ''
             });
@@ -316,42 +306,24 @@ const ApplicationForm = ({ isOpen, onClose }) => {
                             <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: 'var(--color-text-main)' }}>
                                 Phone Number <span style={{ color: 'red' }}>*</span>
                             </label>
-                            <div style={{ display: 'flex', gap: '8px' }}>
-                                <select
-                                    name="countryCode"
-                                    value={formData.countryCode}
-                                    onChange={handleChange}
-                                    style={{
-                                        padding: '12px',
-                                        borderRadius: 'var(--radius-sm)',
-                                        border: '1px solid #d1d5db',
-                                        fontSize: '1rem',
-                                        width: '100px'
-                                    }}
-                                >
-                                    <option value="+91">+91</option>
-                                    <option value="+1">+1</option>
-                                    <option value="+44">+44</option>
-                                    <option value="+971">+971</option>
-                                    <option value="+65">+65</option>
-                                </select>
-                                <input
-                                    type="tel"
-                                    name="phone"
-                                    required
-                                    value={formData.phone}
-                                    onChange={handleChange}
-                                    pattern="[0-9]{10}"
-                                    style={{
-                                        flex: 1,
-                                        padding: '12px',
-                                        borderRadius: 'var(--radius-sm)',
-                                        border: '1px solid #d1d5db',
-                                        fontSize: '1rem'
-                                    }}
-                                    placeholder="10-digit mobile number"
-                                />
-                            </div>
+                            <input
+                                type="tel"
+                                name="phone"
+                                required
+                                value={formData.phone}
+                                onChange={handleChange}
+                                pattern="[0-9]{10}"
+                                maxLength="10"
+                                title="Please enter a valid 10-digit mobile number (numbers only). Example: 9876543210"
+                                style={{
+                                    width: '100%',
+                                    padding: '12px',
+                                    borderRadius: 'var(--radius-sm)',
+                                    border: '1px solid #d1d5db',
+                                    fontSize: '1rem'
+                                }}
+                                placeholder="10-digit mobile number"
+                            />
                         </div>
 
                         {/* Educational Qualification */}

@@ -8,7 +8,6 @@ const DownloadForm = ({ isOpen, onClose }) => {
         name: '',
         email: '',
         phone: '',
-        countryCode: '+91',
         currentProfile: ''
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -32,7 +31,7 @@ const DownloadForm = ({ isOpen, onClose }) => {
                 const templateParams = {
                     from_name: formData.name,
                     from_email: formData.email,
-                    phone: `${formData.countryCode} ${formData.phone}`,
+                    phone: formData.phone,
                     current_profile: formData.currentProfile,
                     to_email: 'your-email@example.com'
                 };
@@ -52,7 +51,7 @@ const DownloadForm = ({ isOpen, onClose }) => {
                 formType: 'download',
                 name: formData.name,
                 email: formData.email,
-                phone: `${formData.countryCode} ${formData.phone}`,
+                phone: formData.phone,
                 currentProfile: formData.currentProfile
             };
 
@@ -88,7 +87,6 @@ const DownloadForm = ({ isOpen, onClose }) => {
                 name: '',
                 email: '',
                 phone: '',
-                countryCode: '+91',
                 currentProfile: ''
             });
             onClose();
@@ -222,47 +220,28 @@ const DownloadForm = ({ isOpen, onClose }) => {
                             />
                         </div>
 
-                        {/* Phone Number */}
                         <div>
                             <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: 'var(--color-text-main)' }}>
                                 Phone Number <span style={{ color: 'red' }}>*</span>
                             </label>
-                            <div style={{ display: 'flex', gap: '8px' }}>
-                                <select
-                                    name="countryCode"
-                                    value={formData.countryCode}
-                                    onChange={handleChange}
-                                    style={{
-                                        padding: '12px',
-                                        borderRadius: 'var(--radius-sm)',
-                                        border: '1px solid #d1d5db',
-                                        fontSize: '1rem',
-                                        width: '100px'
-                                    }}
-                                >
-                                    <option value="+91">+91</option>
-                                    <option value="+1">+1</option>
-                                    <option value="+44">+44</option>
-                                    <option value="+971">+971</option>
-                                    <option value="+65">+65</option>
-                                </select>
-                                <input
-                                    type="tel"
-                                    name="phone"
-                                    required
-                                    value={formData.phone}
-                                    onChange={handleChange}
-                                    pattern="[0-9]{10}"
-                                    style={{
-                                        flex: 1,
-                                        padding: '12px',
-                                        borderRadius: 'var(--radius-sm)',
-                                        border: '1px solid #d1d5db',
-                                        fontSize: '1rem'
-                                    }}
-                                    placeholder="10-digit mobile number"
-                                />
-                            </div>
+                            <input
+                                type="tel"
+                                name="phone"
+                                required
+                                value={formData.phone}
+                                onChange={handleChange}
+                                pattern="[0-9]{10}"
+                                maxLength="10"
+                                title="Please enter a valid 10-digit mobile number (numbers only). Example: 9876543210"
+                                style={{
+                                    width: '100%',
+                                    padding: '12px',
+                                    borderRadius: 'var(--radius-sm)',
+                                    border: '1px solid #d1d5db',
+                                    fontSize: '1rem'
+                                }}
+                                placeholder="10-digit mobile number"
+                            />
                         </div>
 
                         {/* Current Profile */}

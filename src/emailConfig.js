@@ -6,7 +6,7 @@ export const EMAIL_CONFIG = {
    APPLICATION_TEMPLATE_ID: 'YOUR_APPLICATION_TEMPLATE_ID', // Replace with your Application Form Template ID
    DOWNLOAD_TEMPLATE_ID: 'YOUR_DOWNLOAD_TEMPLATE_ID', // Replace with your Download Form Template ID
    PUBLIC_KEY: 'YOUR_PUBLIC_KEY', // Replace with your EmailJS Public Key
-   GOOGLE_SHEETS_URL: 'https://script.google.com/macros/s/AKfycbzZwdUwhb8-kgjiVcYZjAEk971mSH0PWXZ6p2GSK9Pg4fUjSovuSIwugd2CDo9wnCYv/exec'
+   GOOGLE_SHEETS_URL: 'https://script.google.com/macros/s/AKfycbyzaBPXP4lExvvciXZtA9mmbxRkDdZ5RxI1HywUeej-8QxEpgPP8GkH5X0RrZHa2QxV/exec'
 };
 
 /*

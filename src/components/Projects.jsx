@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-const Projects = () => {
+const Projects = ({ onBookCallClick }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const projects = [
@@ -285,12 +285,7 @@ const Projects = () => {
                 }}>
                     <button
                         className="btn"
-                        onClick={() => {
-                            const bookCallSection = document.querySelector('#book-call');
-                            if (bookCallSection) {
-                                bookCallSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                            }
-                        }}
+                        onClick={onBookCallClick}
                         style={{
                             backgroundColor: '#fbbf24',
                             color: '#1f2937',
