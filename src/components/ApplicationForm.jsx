@@ -344,7 +344,7 @@ const ApplicationForm = ({ isOpen, onClose }) => {
                                     border: '1px solid #d1d5db',
                                     fontSize: '1rem'
                                 }}
-                                placeholder="e.g., B.Tech, BCA, MCA, etc."
+                                placeholder="E.g., B.Tech, BCA, MCA, etc."
                             />
                         </div>
 

@@ -129,8 +129,8 @@ const Hero = ({ onApplyClick, onDownloadClick }) => {
                             maxWidth: '280px'
                         }}>
                             <div style={{
-                                width: '48px',
-                                height: '48px',
+                                width: '50px',
+                                height: '50px',
                                 backgroundColor: '#e0f2fe',
                                 borderRadius: '50%',
                                 display: 'flex',
@@ -139,11 +139,11 @@ const Hero = ({ onApplyClick, onDownloadClick }) => {
                                 color: '#0284c7',
                                 fontWeight: 'bold'
                             }}>
-                                98%
+                                100%
                             </div>
                             <div>
                                 <div style={{ fontWeight: '700', fontSize: '1.1rem' }}>Placement Rate</div>
-                                <div style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>Success across 500+ students</div>
+                                <div style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>Success across 75+ Students</div>
                             </div>
                         </div>
                     </div>

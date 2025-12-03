@@ -1,5 +1,4 @@
-import React, { useRef } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React from 'react';
 
 const HiringPartners = () => {
     const categories = [
@@ -74,16 +73,7 @@ const HiringPartners = () => {
         }
     ];
 
-    const scrollContainer = (id, direction) => {
-        const container = document.getElementById(`scroll-${id}`);
-        if (container) {
-            const scrollAmount = 300;
-            container.scrollBy({
-                left: direction === 'left' ? -scrollAmount : scrollAmount,
-                behavior: 'smooth'
-            });
-        }
-    };
+
 
     return (
         <section style={{
@@ -124,7 +114,7 @@ const HiringPartners = () => {
                     maxWidth: '1200px',
                     margin: '0 auto'
                 }}>
-                    {categories.map((category) => (
+                    {categories.map((category, idx) => (
                         <div key={category.id} style={{ position: 'relative' }}>
                             {/* Category Badge - Centered above row */}
                             <div style={{
@@ -145,61 +135,34 @@ const HiringPartners = () => {
                                 </span>
                             </div>
 
-                            {/* Scroll Container Wrapper */}
+                            {/* Marquee Container Wrapper */}
                             <div style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '20px',
-                                backgroundColor: '#f9fafb', // Very light gray background for the row
-                                borderRadius: '100px', // Pill shape for the row container
-                                padding: '20px 10px'
+                                backgroundColor: '#f9fafb',
+                                borderRadius: '100px',
+                                padding: '20px 40px',
+                                overflow: 'hidden',
+                                position: 'relative'
                             }}>
-                                {/* Left Arrow */}
-                                <button
-                                    onClick={() => scrollContainer(category.id, 'left')}
-                                    style={{
-                                        border: 'none',
-                                        background: 'transparent',
-                                        cursor: 'pointer',
-                                        padding: '10px',
-                                        color: '#9ca3af',
-                                        transition: 'color 0.3s ease'
-                                    }}
-                                    onMouseEnter={(e) => e.currentTarget.style.color = '#4b5563'}
-                                    onMouseLeave={(e) => e.currentTarget.style.color = '#9ca3af'}
-                                >
-                                    <ChevronLeft size={24} />
-                                </button>
-
-                                {/* Scrollable Area */}
+                                {/* Marquee Track */}
                                 <div
-                                    id={`scroll-${category.id}`}
+                                    className={`marquee-track ${idx === 1 ? 'reverse' : ''}`}
                                     style={{
                                         display: 'flex',
-                                        gap: '50px',
-                                        overflowX: 'auto',
-                                        scrollBehavior: 'smooth',
-                                        scrollbarWidth: 'none', // Firefox
-                                        msOverflowStyle: 'none', // IE/Edge
-                                        padding: '10px 20px',
-                                        alignItems: 'center',
-                                        flex: 1
+                                        gap: '60px',
+                                        alignItems: 'center'
                                     }}
-                                    className="hide-scrollbar"
                                 >
+                                    {/* First set of logos */}
                                     {category.companies.map((company, index) => (
                                         <div
-                                            key={index}
+                                            key={`${category.id}-1-${index}`}
                                             style={{
                                                 flexShrink: 0,
                                                 display: 'flex',
                                                 alignItems: 'center',
                                                 justifyContent: 'center',
-                                                transition: 'transform 0.3s ease',
-                                                cursor: 'pointer'
+                                                transition: 'transform 0.3s ease'
                                             }}
-                                            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
-                                            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                                         >
                                             <img
                                                 src={company.logo}
@@ -212,45 +175,93 @@ const HiringPartners = () => {
                                                     transition: 'transform 0.3s ease'
                                                 }}
                                                 onMouseEnter={(e) => {
-                                                    e.currentTarget.style.transform = 'scale(1.05)';
+                                                    e.currentTarget.style.transform = 'scale(1.1)';
                                                 }}
                                                 onMouseLeave={(e) => {
                                                     e.currentTarget.style.transform = 'scale(1)';
                                                 }}
                                                 onError={(e) => {
                                                     e.currentTarget.style.display = 'none';
-                                                    e.currentTarget.parentElement.innerHTML = `<span style="font-weight:700; color:#374151; white-space:nowrap;">${company.name}</span>`;
+                                                }}
+                                            />
+                                        </div>
+                                    ))}
+                                    {/* Duplicate set for seamless loop */}
+                                    {category.companies.map((company, index) => (
+                                        <div
+                                            key={`${category.id}-2-${index}`}
+                                            style={{
+                                                flexShrink: 0,
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                transition: 'transform 0.3s ease'
+                                            }}
+                                        >
+                                            <img
+                                                src={company.logo}
+                                                alt={company.name}
+                                                style={{
+                                                    height: '40px',
+                                                    width: 'auto',
+                                                    maxWidth: '140px',
+                                                    objectFit: 'contain',
+                                                    filter: 'grayscale(100%)',
+                                                    opacity: 0.7,
+                                                    transition: 'all 0.3s ease'
+                                                }}
+                                                onMouseEnter={(e) => {
+                                                    e.currentTarget.style.filter = 'grayscale(0%)';
+                                                    e.currentTarget.style.opacity = '1';
+                                                    e.currentTarget.style.transform = 'scale(1.1)';
+                                                }}
+                                                onMouseLeave={(e) => {
+                                                    e.currentTarget.style.filter = 'grayscale(100%)';
+                                                    e.currentTarget.style.opacity = '0.7';
+                                                    e.currentTarget.style.transform = 'scale(1)';
+                                                }}
+                                                onError={(e) => {
+                                                    e.currentTarget.style.display = 'none';
                                                 }}
                                             />
                                         </div>
                                     ))}
                                 </div>
-
-                                {/* Right Arrow */}
-                                <button
-                                    onClick={() => scrollContainer(category.id, 'right')}
-                                    style={{
-                                        border: 'none',
-                                        background: 'transparent',
-                                        cursor: 'pointer',
-                                        padding: '10px',
-                                        color: '#9ca3af',
-                                        transition: 'color 0.3s ease'
-                                    }}
-                                    onMouseEnter={(e) => e.currentTarget.style.color = '#4b5563'}
-                                    onMouseLeave={(e) => e.currentTarget.style.color = '#9ca3af'}
-                                >
-                                    <ChevronRight size={24} />
-                                </button>
                             </div>
                         </div>
                     ))}
                 </div>
 
-                {/* Hide Scrollbar CSS */}
+                {/* Marquee Animation CSS */}
                 <style>{`
-                    .hide-scrollbar::-webkit-scrollbar {
-                        display: none;
+                    @keyframes marquee {
+                        0% {
+                            transform: translateX(0);
+                        }
+                        100% {
+                            transform: translateX(-50%);
+                        }
+                    }
+
+                    @keyframes marquee-reverse {
+                        0% {
+                            transform: translateX(-50%);
+                        }
+                        100% {
+                            transform: translateX(0);
+                        }
+                    }
+
+                    .marquee-track {
+                        animation: marquee 40s linear infinite;
+                    }
+
+                    .marquee-track.reverse {
+                        animation: marquee-reverse 40s linear infinite;
+                    }
+
+                    .marquee-track:hover {
+                        animation-play-state: running;
                     }
                 `}</style>
             </div>

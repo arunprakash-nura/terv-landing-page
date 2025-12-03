@@ -17,7 +17,6 @@ const TrialCTA = ({ onBookCallClick }) => {
                         padding: '16px 40px',
                         fontSize: '1.1rem',
                         fontWeight: '700',
-                        fontWeight: '700',
                         color: 'white',
                         backgroundColor: '#794DFD',
                         border: 'none',
