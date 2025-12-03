@@ -87,7 +87,7 @@ const HiringPartners = () => {
 
     return (
         <section style={{
-            padding: '80px 20px',
+            padding: '80px 20px 20px 20px',
             backgroundColor: 'white'
         }}>
             <div className="container">

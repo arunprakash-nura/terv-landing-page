@@ -287,15 +287,15 @@ const Projects = ({ onBookCallClick }) => {
                         className="btn"
                         onClick={onBookCallClick}
                         style={{
-                            backgroundColor: '#fbbf24',
-                            color: '#1f2937',
+                            backgroundColor: '#794DFD',
+                            color: 'white',
                             padding: '18px 48px',
                             fontSize: '1.3rem',
                             fontWeight: '700',
                             border: 'none',
                             borderRadius: '12px',
                             cursor: 'pointer',
-                            boxShadow: '0 10px 25px rgba(251, 191, 36, 0.3)',
+                            boxShadow: '0 10px 25px rgba(121, 77, 253, 0.3)',
                             transition: 'all 0.3s ease',
                             display: 'inline-flex',
                             alignItems: 'center',
@@ -303,11 +303,11 @@ const Projects = ({ onBookCallClick }) => {
                         }}
                         onMouseEnter={(e) => {
                             e.currentTarget.style.transform = 'translateY(-4px)';
-                            e.currentTarget.style.boxShadow = '0 15px 35px rgba(251, 191, 36, 0.4)';
+                            e.currentTarget.style.boxShadow = '0 15px 35px rgba(121, 77, 253, 0.4)';
                         }}
                         onMouseLeave={(e) => {
                             e.currentTarget.style.transform = 'translateY(0)';
-                            e.currentTarget.style.boxShadow = '0 10px 25px rgba(251, 191, 36, 0.3)';
+                            e.currentTarget.style.boxShadow = '0 10px 25px rgba(121, 77, 253, 0.3)';
                         }}
                     >
                         Book Your Trial, Now
